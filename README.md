@@ -65,3 +65,10 @@ streamlit run app.py
 ```
 
 이 저장소의 CSV는 포트폴리오 데모를 위한 익명화 샘플 데이터입니다. 실제 분석 데이터의 사용자 식별자는 공개하지 않습니다.
+## 분석 노트북
+
+전체 분석 과정과 추천 로직은 아래 Colab/Jupyter 노트북에서 확인할 수 있습니다.
+
+- `analysis/job_recommendation_prototype_clean.ipynb`
+
+노트북에는 최근 30일 기준 설정, 관심 직무 추정, Train/Test 검증, 추천 후보 생성, 미래 공고 및 기존 지원 공고 제외, 속성 기반 재정렬, 추천 결과 검증 과정이 포함되어 있습니다.
