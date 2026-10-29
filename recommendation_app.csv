@@ -1,0 +1,16 @@
+user_id,interest_job_field,rank,job_id,company_id,job_field,remote_text,salary_text,attribute_score,cdate
+demo-user-001,SW 개발,1,demo-job-001-1,demo-company-001-1,SW 개발,가능,공개,2,2023-10-25 09:00:00
+demo-user-001,SW 개발,2,demo-job-001-2,demo-company-001-2,SW 개발,가능,공개,2,2023-10-24 09:00:00
+demo-user-001,SW 개발,3,demo-job-001-3,demo-company-001-3,SW 개발,가능,공개,2,2023-10-23 09:00:00
+demo-user-001,SW 개발,4,demo-job-001-4,demo-company-001-4,SW 개발,가능,공개,2,2023-10-22 09:00:00
+demo-user-001,SW 개발,5,demo-job-001-5,demo-company-001-5,SW 개발,가능,공개,2,2023-10-21 09:00:00
+demo-user-002,디자인,1,demo-job-002-1,demo-company-002-1,디자인,가능,공개,2,2023-10-25 09:00:00
+demo-user-002,디자인,2,demo-job-002-2,demo-company-002-2,디자인,가능,공개,2,2023-10-24 09:00:00
+demo-user-002,디자인,3,demo-job-002-3,demo-company-002-3,디자인,가능,공개,2,2023-10-23 09:00:00
+demo-user-002,디자인,4,demo-job-002-4,demo-company-002-4,디자인,가능,공개,2,2023-10-22 09:00:00
+demo-user-002,디자인,5,demo-job-002-5,demo-company-002-5,디자인,가능,공개,2,2023-10-21 09:00:00
+demo-user-003,경영지원,1,demo-job-003-1,demo-company-003-1,경영지원,가능,공개,2,2023-10-25 09:00:00
+demo-user-003,경영지원,2,demo-job-003-2,demo-company-003-2,경영지원,가능,공개,2,2023-10-24 09:00:00
+demo-user-003,경영지원,3,demo-job-003-3,demo-company-003-3,경영지원,가능,공개,2,2023-10-23 09:00:00
+demo-user-003,경영지원,4,demo-job-003-4,demo-company-003-4,경영지원,가능,공개,2,2023-10-22 09:00:00
+demo-user-003,경영지원,5,demo-job-003-5,demo-company-003-5,경영지원,가능,공개,2,2023-10-21 09:00:00
