@@ -96,11 +96,22 @@ c1, c2, c3 = st.columns(3)
 with c1:
     st.markdown(f'''<div class="profile-card"><div class="profile-label">관심 직무</div><div class="profile-value">{safe_text(profile['interest_job_field'])}</div></div>''', unsafe_allow_html=True)
 with c2:
-    st.markdown(f'''<div class="profile-card"><div class="profile-label">직무 결정 방식</div><div class="profile-value">{safe_text(profile['job_field_source'])}</div></div>''', unsafe_allow_html=True)
+    source_raw = safe_text(profile['job_field_source'])
+    source_label = '지원 이력 기반' if source_raw == '실제 지원직무' else '최근 탐색 행동 기반'
+    st.markdown(f'''<div class="profile-card"><div class="profile-label">직무 판단 근거</div><div class="profile-value">{source_label}</div></div>''', unsafe_allow_html=True)
 with c3:
     st.markdown(f'''<div class="profile-card"><div class="profile-label">추천 공고 수</div><div class="profile-value">{len(selected_recs)}개</div></div>''', unsafe_allow_html=True)
 
-st.markdown('<div class="section-title">최근 행동</div>', unsafe_allow_html=True)
+
+if source_raw == '실제 지원직무':
+    st.info(
+        f"이 사용자의 관심 직무는 최근 검색어가 아니라, 실제 지원 이력에서 확인된 **{safe_text(profile['interest_job_field'])}** 직무를 기준으로 결정되었습니다."
+    )
+else:
+    st.info(
+        f"이 사용자는 최근 지원 직무 정보가 없어, 검색어·Specialty·Tag 등 탐색 행동을 바탕으로 **{safe_text(profile['interest_job_field'])}** 직무를 추정했습니다."
+    )
+st.markdown('<div class="section-title">최근 탐색 행동</div>', unsafe_allow_html=True)
 b1, b2, b3 = st.columns(3)
 with b1:
     st.markdown(f'''<div class="profile-card"><div class="profile-label">검색어</div><div>{safe_text(profile['recent_keywords'])}</div></div>''', unsafe_allow_html=True)
@@ -139,12 +150,13 @@ for _, row in selected_recs.iterrows():
 
 with st.expander('추천 로직 보기'):
     st.markdown('''
-    1. 최근 30일 행동으로 관심 직무 결정  
-    2. 관심 직무와 동일한 공고만 후보로 생성  
-    3. 미래 공고 및 기존 지원 공고 제외  
-    4. 원격근무 가능 / 연봉 공개 속성 우선 재정렬  
-    5. 동일 점수에서는 최신 공고 우선  
-    6. 동일 회사 중복 제거 후 TOP5 추천
+    1. 최근 30일 행동과 실제 지원 이력을 함께 확인  
+    2. 실제 지원 직무가 있으면 이를 우선 사용하고, 없으면 탐색 행동으로 관심 직무 추정  
+    3. 관심 직무와 동일한 공고만 후보로 생성  
+    4. 미래 공고 및 기존 지원 공고 제외  
+    5. 원격근무 가능 / 연봉 공개 속성 우선 재정렬  
+    6. 동일 점수에서는 최신 공고 우선  
+    7. 동일 회사 중복 제거 후 TOP5 추천
     ''')
 
 st.caption('※ 공고명과 회사명은 포트폴리오 시연을 위해 생성한 데모용 예시입니다. 추천 구조와 직무/속성 결과는 익명화된 실제 분석 결과를 기반으로 합니다.')
