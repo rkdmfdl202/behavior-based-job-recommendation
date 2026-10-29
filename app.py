@@ -12,15 +12,97 @@ st.markdown('''
 <style>
     .block-container {max-width: 1180px; padding-top: 2rem; padding-bottom: 4rem;}
     .hero {
-        padding: 28px 32px;
-        border-radius: 24px;
-        background: linear-gradient(135deg, #111827 0%, #312e81 55%, #7c3aed 100%);
+        position: relative;
+        overflow: hidden;
+        padding: 38px 40px 34px 40px;
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 85% 20%, rgba(255,255,255,.16), transparent 24%),
+          radial-gradient(circle at 72% 82%, rgba(168,85,247,.25), transparent 26%),
+          linear-gradient(135deg, #0f172a 0%, #312e81 48%, #7c3aed 100%);
         color: white;
-        margin-bottom: 26px;
-        box-shadow: 0 18px 40px rgba(49,46,129,.18);
+        margin-bottom: 28px;
+        box-shadow: 0 24px 60px rgba(49,46,129,.22);
     }
-    .hero h1 {margin:0 0 10px 0; font-size: 38px;}
-    .hero p {margin:0; color: rgba(255,255,255,.82); font-size: 16px;}
+    .hero:after {
+        content:'';
+        position:absolute;
+        width:220px;
+        height:220px;
+        border-radius:50%;
+        right:-70px;
+        top:-70px;
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.12);
+    }
+    .hero-eyebrow {
+        display:inline-block;
+        padding:7px 11px;
+        border-radius:999px;
+        background:rgba(255,255,255,.12);
+        border:1px solid rgba(255,255,255,.16);
+        color:#e9d5ff;
+        font-size:12px;
+        font-weight:700;
+        letter-spacing:.04em;
+        margin-bottom:14px;
+    }
+    .hero h1 {
+        margin:0 0 12px 0;
+        font-size: 42px;
+        line-height:1.15;
+        letter-spacing:-.03em;
+    }
+    .hero p {
+        margin:0 0 22px 0;
+        max-width:760px;
+        color: rgba(255,255,255,.82);
+        font-size: 16px;
+        line-height:1.7;
+    }
+    .hero-grid {
+        display:grid;
+        grid-template-columns: repeat(4, minmax(0,1fr));
+        gap:10px;
+        max-width:820px;
+    }
+    .hero-stat {
+        padding:12px 14px;
+        border-radius:16px;
+        background:rgba(255,255,255,.10);
+        border:1px solid rgba(255,255,255,.13);
+        backdrop-filter: blur(8px);
+    }
+    .hero-stat-label {
+        font-size:11px;
+        color:rgba(255,255,255,.65);
+        margin-bottom:4px;
+    }
+    .hero-stat-value {
+        font-size:18px;
+        font-weight:800;
+        color:white;
+    }
+    .flow {
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+        gap:8px;
+        margin-top:18px;
+        font-size:12px;
+        color:rgba(255,255,255,.75);
+    }
+    .flow-chip {
+        padding:7px 10px;
+        border-radius:999px;
+        background:rgba(15,23,42,.22);
+        border:1px solid rgba(255,255,255,.12);
+    }
+    @media (max-width: 800px) {
+        .hero {padding:28px 22px;}
+        .hero h1 {font-size:32px;}
+        .hero-grid {grid-template-columns: repeat(2, minmax(0,1fr));}
+    }
     .profile-card {
         background: white;
         border: 1px solid #e5e7eb;
@@ -87,8 +169,43 @@ selected_recs = recs[recs['user_id'] == selected_user].sort_values('rank').head(
 
 st.markdown('''
 <div class="hero">
-  <h1>💼 개인화 채용공고 추천 프로토타입</h1>
-  <p>최근 행동으로 관심 직무를 추정하고, 원격근무 가능 · 연봉 공개 공고를 우선 재정렬한 TOP5 추천 결과입니다.</p>
+  <div class="hero-eyebrow">BEHAVIOR-BASED JOB RECOMMENDATION</div>
+  <h1>💼 행동 데이터 기반<br>개인화 채용공고 추천</h1>
+  <p>
+    최근 30일의 탐색 행동과 실제 지원 이력을 기반으로 관심 직무를 결정하고,
+    동일 직무 공고 중 원격근무 가능·연봉 공개 속성을 우선 반영해 TOP5를 추천합니다.
+  </p>
+
+  <div class="hero-grid">
+    <div class="hero-stat">
+      <div class="hero-stat-label">직무 추정 Accuracy</div>
+      <div class="hero-stat-value">95.03%</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-label">직무 추정 Coverage</div>
+      <div class="hero-stat-value">70.15%</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-label">추천 생성 사용자</div>
+      <div class="hero-stat-value">5,495명</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-label">TOP5 충족률</div>
+      <div class="hero-stat-value">99.87%</div>
+    </div>
+  </div>
+
+  <div class="flow">
+    <span class="flow-chip">최근 30일 행동</span>
+    <span>→</span>
+    <span class="flow-chip">관심 직무 결정</span>
+    <span>→</span>
+    <span class="flow-chip">후보 공고 생성</span>
+    <span>→</span>
+    <span class="flow-chip">원격·연봉 공개 우선 재정렬</span>
+    <span>→</span>
+    <span class="flow-chip">TOP5 추천</span>
+  </div>
 </div>
 ''', unsafe_allow_html=True)
 
